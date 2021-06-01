@@ -78,7 +78,7 @@ body {
     padding: 2rem;
     text-transform: uppercase;
     border: none;
-    font-weight: 900;
+    font-weight: 600;
     width: 250px;
     margin:0  auto;
 
@@ -86,9 +86,18 @@ body {
     align-items: center;
     line-height: 0;
 }
+.boton p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin: 0 auto;
+    height: 0 auto;
+    padding-top: 6px;
+}
 .boton span {
-    font-size: 2.2rem;
-    margin-left: 20px;
+    font-size: 0.90rem;
+    margin-left: 10px;
 }
 
 .boton:hover {
@@ -279,14 +288,21 @@ body.index {
 }
 
 form.agregar-proyecto {
-    max-width: 800px;
+    max-width: 400px;
+    height: 500px;
     width: 90%;
+    border-radius: 5px;
     background-color: #607D8B;
     margin: 0 auto;
     padding: 2rem;
     color: white;
     transition: background-color .5s ease-in-out;
 }
+
+form.agregar-proyecto:hover {
+    box-shadow: 1px rgba(0, 0, 0, 0.459);
+}
+
 form.agregar-proyecto label,
 form.agregar-proyecto input {
     display: block;

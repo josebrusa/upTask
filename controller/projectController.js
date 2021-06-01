@@ -1,7 +1,15 @@
 exports.projectHome = (req, res) => {
-    res.render('index');
+    res.render('index', {
+        nombrePagina : 'Proyectos'
+    });
 }
 
-exports.proyectNosotros = (req, res) => {
-    res.render('nosotros')
+exports.newProject = (req, res) => {
+    res.render('nuevoProyecto', {
+        nombrePagina: 'Nuevo Proyecto'
+    })
+}
+
+exports.createProject = ( req, res ) => {
+    res.send('creaste nueva tarea')
 }

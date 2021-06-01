@@ -4,10 +4,29 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="/views/styles/styles.css")
-        link(rel="stylesheet", href="/public/css/normalize.css")
-        link(rel="stylesheet", href="/public/css/app.css")
-        
+        link(rel="stylesheet", href="/styles/styles.css")
+        link(rel="stylesheet", href="/css/normalize.css")
+        link(rel="stylesheet", href="/css/app.css")
+        title= nombrePagina
     body
-        block contain
+        header.barra
+            h1 upTask! - Administrador de Projectos
+            a(href="#") Cerrar Sesion
+
+        main.contenedor
+            aside.contenedor-proyectos
+                .panel.crear-proyecto
+                    a(href="/newProject" class="boton")
+                        p.titulonp Nuevo Proyecto
+                        span ✍🏽
+                .panel.lista-proyectos
+                    h2 Proyectos
+                    ul#proyectos.proyectos
+                        li
+                            a(href="#") Diseño de tienda Virtual
+                        li
+                            a(href="#") Diseño de juego Virtual
+                        li
+                            a(href="#") Diseño de fotos Virtual
+
+            block contain
