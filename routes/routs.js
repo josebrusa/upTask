@@ -11,6 +11,10 @@ module.exports = function() {
     router.post('/newProject',
         body('nombre').not().isEmpty().trim().escape(),
         projectController.createProject);
+    router.get('/proyectos/:url', projectController.projectUrl)
+
+
+
     return router;
 
 }
