@@ -1,5 +1,4 @@
 const Proyectos = require('../models/Proyectos')
-const slug = require('slug')
 
 exports.projectHome = (req, res) => {
     res.render('index', {
@@ -26,8 +25,7 @@ exports.createProject = async ( req, res ) => {
             errores
         })
     }else {
-        const url = slug(nombre).toLowerCase();
-        const proyectos = await Proyectos.create({ nombre, url })
+        const proyectos = await Proyectos.create({ nombre })
             res.redirect('/')
     }
 }
