@@ -33,19 +33,20 @@ exports.createProject = async ( req, res ) => {
             proyectos
         })
     }else {
-        const proyectos = await Proyectos.create({ nombre })
+            await Proyectos.create({ nombre })
             res.redirect('/')
     }
 }
 
 exports.projectUrl = async (req, res, next) => {
-    const proyectos = await Proyectos.findAll();
-
-    const proyecto = await Proyectos.findOne({
+    const proyectosPromise = Proyectos.findAll();
+    const proyectoPromise = Proyectos.findOne({
         where: {
             url: req.params.url
         }
     });
+
+    const [ proyectos, proyecto ] = await Promise.all([ proyectosPromise, proyectoPromise ]);
 
     if(!proyecto) return next();
     // res.send('Proyecto encontrado')
@@ -57,9 +58,42 @@ exports.projectUrl = async (req, res, next) => {
 }
 
 exports.formularioEditar = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const proyectosPromise = Proyectos.findAll();
+    const proyectoPromise = Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    const [ proyectos, proyecto ] = await Promise.all([ proyectosPromise, proyectoPromise ]);
+
     res.render('newProject', {
         nombrePagina: 'Editar Tarea',
-        proyectos
-    })
+        proyectos,
+        proyecto
+    });
+}
+
+exports.actualizarProyecto = async ( req, res ) => {
+    const proyectos = await Proyectos.findAll();
+
+    const { nombre } = req.body;
+    let errores = [];
+
+    if(!nombre) {
+        errores.push({'texto': 'Agrega un titulo a la tarea'})
+    }
+    if(errores.length > 0) {
+        res.render('newProject', {
+            nombrePagina: 'Editar Tarea',
+            errores,
+            proyectos
+        })
+    }else {
+            await Proyectos.update(
+                { nombre: nombre },
+                { where: { id: req.params.id }}
+                )
+            res.redirect('/')
+    }
 }
