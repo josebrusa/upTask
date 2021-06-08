@@ -3,7 +3,7 @@ const Proyectos = require('../models/Proyectos')
 exports.projectHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     res.render('index', {
-        nombrePagina : 'Proyectos',
+        nombrePagina : 'Tareas',
         proyectos
     });
 }
@@ -12,7 +12,7 @@ exports.newForm = async (req, res) => {
     const proyectos = await Proyectos.findAll();
 
     res.render('newProject', {
-        nombrePagina: 'Nuevo Proyecto',
+        nombrePagina: 'Nueva Tarea',
         proyectos
     })
 }
@@ -24,11 +24,11 @@ exports.createProject = async ( req, res ) => {
     let errores = [];
 
     if(!nombre) {
-        errores.push({'texto': 'Agrega un titulo'})
+        errores.push({'texto': 'Agrega un titulo a la tarea'})
     }
     if(errores.length > 0) {
         res.render('newProject', {
-            nombrePagina: 'Nuevo Proyecto',
+            nombrePagina: 'Nueva Tarea',
             errores,
             proyectos
         })
@@ -50,8 +50,16 @@ exports.projectUrl = async (req, res, next) => {
     if(!proyecto) return next();
     // res.send('Proyecto encontrado')
     res.render('tareas', {
-        nombrePagina: 'Tareas del proyecto',
+        nombrePagina: 'Tarea',
         proyecto,
+        proyectos
+    })
+}
+
+exports.formularioEditar = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
+    res.render('newProject', {
+        nombrePagina: 'Editar Tarea',
         proyectos
     })
 }

@@ -1,6 +1,10 @@
 extends layout
 
 block contain
+    pre= vardump(proyecto)
 
     .contenido-principal
-        h1 #{nombrePagina}
+        h1 #{nombrePagina} - #{proyecto.nombre}
+        .contenedor-acciones 
+            a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar Tarea
+            button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar Tarea

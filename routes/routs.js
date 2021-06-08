@@ -12,6 +12,7 @@ module.exports = function() {
         body('nombre').not().isEmpty().trim().escape(),
         projectController.createProject);
     router.get('/proyectos/:url', projectController.projectUrl)
+    router.get('/proyecto/editar/:id', projectController.formularioEditar)
 
 
 
