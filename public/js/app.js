@@ -1,1 +1,1 @@
-alert('hola-Mundo-2')
+import tareas from './modulos/proyectos'
