@@ -29,8 +29,15 @@ if(btnEliminar) {
                                 );
                                 setTimeout(() => {
                                     window.location.href = '/'
-                                }, 2000);
-                        });
+                                }, 3000);
+                        })
+                    .catch(() => {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Hubo un error',
+                            text: 'No se logro eliminar la tarea'
+                        })
+                    })
                 }
             })
     })
