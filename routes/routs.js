@@ -8,16 +8,13 @@ module.exports = function() {
 
     router.get('/', projectController.projectHome);
     router.get('/newProject', projectController.newForm);
-    router.post('/newProject',
-        body('nombre').not().isEmpty().trim().escape(),
-        projectController.createProject);
+    router.post('/newProject', body('nombre').not().isEmpty().trim().escape(), projectController.createProject);
 
     router.get('/proyectos/:url', projectController.projectUrl);
 
     router.get('/proyecto/editar/:id', projectController.formularioEditar);
-    router.post('/newProject/:id',
-    body('nombre').not().isEmpty().trim().escape(),
-    projectController.actualizarProyecto);
+    router.post('/newProject/:id', body('nombre').not().isEmpty().trim().escape(), projectController.actualizarProyecto);
+    router.delete('/proyectos/:url', projectController.eliminarProyecto);
 
 
 

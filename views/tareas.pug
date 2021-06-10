@@ -7,4 +7,4 @@ block contain
         h1 #{nombrePagina} - #{proyecto.nombre}
         .contenedor-acciones
             a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar Tarea
-            button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar Tarea
+            button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Tarea
