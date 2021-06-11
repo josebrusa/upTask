@@ -15,7 +15,7 @@ block contain
             ul
               if tareas.length
                 each tarea in tareas
-                    li.tarea
+                    li.tarea( tarea-data = tarea.id )
                         p= tarea.tarea
                         .acciones
                             if tarea.estado
