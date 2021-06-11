@@ -1,10 +1,18 @@
 extends layout
 
 block contain
-    //- pre= vardump(proyecto)
-
     .contenido-principal
         h1 #{nombrePagina} - #{proyecto.nombre}
+
+        form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="POST")
+            .campo
+                label(for="tarea") Tarea:
+                input.nombre-tarea(type="text" name="tarea" placeholder="Nombre Tarea")
+            .campo.enviar
+                input.boton.nueva-tarea(type="submit" value="Agregar")
+
+
+
         .contenedor-acciones
             a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar Tarea
             button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Tarea
