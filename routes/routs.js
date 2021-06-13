@@ -19,6 +19,7 @@ module.exports = function() {
     router.delete('/proyectos/:url', projectController.eliminarProyecto);
 
     router.post('/proyectos/:url', tareasController.agregarTarea);
+    router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
 
 
 
