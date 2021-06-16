@@ -4,7 +4,7 @@ const Tareas = require('../models/Tareas')
 exports.projectHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     res.render('index', {
-        nombrePagina : 'Tareas',
+        nombrePagina : 'Proyectos',
         proyectos
     });
 }
@@ -13,7 +13,7 @@ exports.newForm = async (req, res) => {
     const proyectos = await Proyectos.findAll();
 
     res.render('newProject', {
-        nombrePagina: 'Nueva Tarea',
+        nombrePagina: 'Nuevo Proyecto',
         proyectos
     })
 }
@@ -57,7 +57,7 @@ exports.projectUrl = async (req, res, next) => {
 
     if(!proyecto) return next();
     res.render('tareas', {
-        nombrePagina: 'Tarea',
+        nombrePagina: 'Proyecto',
         proyecto,
         proyectos,
         tareas

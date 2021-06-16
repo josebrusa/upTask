@@ -87,8 +87,12 @@ body {
     line-height: 0;
 }
 .boton span {
-    font-size: 2.2rem;
-    margin-left: 20px;
+    font-size: 2rem;
+    margin-left: 15px;
+}
+span {
+    height: 2px;
+    width: 2px;
 }
 
 .boton:hover {

@@ -11,17 +11,17 @@ html(lang="en")
         title= nombrePagina
     body
         header.barra
-            h1 upTask! - Administrador de Projectos
+            h1 upTask! - Administrador de Proyectos
             a(href="#") Cerrar Sesion
 
         main.contenedor
             aside.contenedor-proyectos
                 .panel.crear-proyecto
                     a(href="/newProject" class="boton")
-                        p.titulonp Nueva Tarea
+                        p.titulonp Crear Proyecto
                         span ✍🏽
                 .panel.lista-proyectos
-                    h2 Tareas
+                    h2 Proyectos
                     ul#proyectos.proyectos
                         if(proyectos.length)
                             each proyecto in proyectos
