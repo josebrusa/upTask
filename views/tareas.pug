@@ -26,6 +26,13 @@ block contain
               else
                 p No se encontraron tareas asignadas a este proyecto
 
+
+        .avance
+            h2 Avance del Proyecto
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+
+
         .contenedor-acciones
             a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar Tarea
             button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Tarea
