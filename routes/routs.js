@@ -24,6 +24,7 @@ module.exports = function() {
     router.delete('/tareas/:id', tareasController.eliminarTarea);
 
     router.get('/crear-cuenta', ususariosController.formCrearCuenta);
+    router.post('/crear-cuenta', ususariosController.crearCuenta);
 
 
 
