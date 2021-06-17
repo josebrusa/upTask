@@ -8,6 +8,7 @@ const db = require('./config/db')
 
 require('./models/Proyectos')
 require('./models/Tareas')
+require('./models/Usuarios')
 
 db.sync()
     .then(() => console.log('conectado'))
