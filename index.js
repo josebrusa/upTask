@@ -3,6 +3,10 @@ const router = require('./routes/routs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const helpers = require('./helpers')
+const flash = require('connect-flash')
+const expressValidator = require('express-validator')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 const db = require('./config/db')
 
@@ -15,19 +19,35 @@ db.sync()
     .catch(error => console.log(error))
 
 const app = express();
-const port = 3000
+const port = 3000;
 
 app.use(express.static('public'))
 
 app.set('view engine', 'pug')
-app.set('views', path.join(__dirname, './views'))
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(expressValidator());
+
+
+app.set('views', path.join(__dirname, './views'));
+
+app.use(flash());
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'supersecreto',
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use((req, res, next) =>{
     res.locals.vardump = helpers.vardump;
+    res.locals.mensajes = req.flash();
     next();
 })
 
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', router())
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
