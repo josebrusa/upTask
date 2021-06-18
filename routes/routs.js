@@ -4,7 +4,8 @@ const { body } = require('express-validator/check');
 
 const projectController = require('../controller/projectController')
 const tareasController = require('../controller/tareasController')
-const ususariosController = require('../controller/usuariosController')
+const usuariosController = require('../controller/usuariosController')
+const authController = require('../controller/authController')
 
 module.exports = function() {
 
@@ -23,10 +24,11 @@ module.exports = function() {
     router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
     router.delete('/tareas/:id', tareasController.eliminarTarea);
 
-    router.get('/crear-cuenta', ususariosController.formCrearCuenta);
-    router.post('/crear-cuenta', ususariosController.crearCuenta);
+    router.get('/crear-cuenta', usuariosController.formCrearCuenta);
+    router.post('/crear-cuenta', usuariosController.crearCuenta);
 
-    router.get('/iniciar-sesion', ususariosController.formIniciarSesion);
+    router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
+    router.post('/iniciar-sesion', authController.autenticarUsuario);
 
 
 

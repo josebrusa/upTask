@@ -7,6 +7,7 @@ const flash = require('connect-flash')
 const expressValidator = require('express-validator')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const passport = require('./config/passport')
 
 const db = require('./config/db')
 
@@ -41,6 +42,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) =>{
     res.locals.vardump = helpers.vardump;
