@@ -8,25 +8,31 @@ const usuariosController = require('../controller/usuariosController')
 const authController = require('../controller/authController')
 
 module.exports = function() {
+    // ruta home
+    router.get('/', authController.usuarioAutenticado, projectController.projectHome);
+    // formulario proyecto
+    router.get('/newProject', authController.usuarioAutenticado, projectController.newForm);
+    // nuevo proyecto
+    router.post('/newProject', authController.usuarioAutenticado, body('nombre').not().isEmpty().trim().escape(), projectController.createProject);
+    // listar proyecto
+    router.get('/proyectos/:url', authController.usuarioAutenticado, projectController.projectUrl);
+    // editar formulario
+    router.get('/proyecto/editar/:id', authController.usuarioAutenticado, projectController.formularioEditar);
+    // actualizar proyecto
+    router.post('/newProject/:id', authController.usuarioAutenticado, body('nombre').not().isEmpty().trim().escape(), projectController.actualizarProyecto);
+    // eliminar proyecto
+    router.delete('/proyectos/:url', authController.usuarioAutenticado, projectController.eliminarProyecto);
+    // crear tarea
+    router.post('/proyectos/:url', authController.usuarioAutenticado, tareasController.agregarTarea);
+    // actualizar tarea
+    router.patch('/tareas/:id', authController.usuarioAutenticado, tareasController.cambiarEstadoTarea);
+    // Eliminar tarea
+    router.delete('/tareas/:id', authController.usuarioAutenticado, tareasController.eliminarTarea);
 
-    router.get('/', projectController.projectHome);
-    router.get('/newProject', projectController.newForm);
-    router.post('/newProject', body('nombre').not().isEmpty().trim().escape(), projectController.createProject);
-
-    router.get('/proyectos/:url', projectController.projectUrl);
-
-    router.get('/proyecto/editar/:id', projectController.formularioEditar);
-    router.post('/newProject/:id', body('nombre').not().isEmpty().trim().escape(), projectController.actualizarProyecto);
-
-    router.delete('/proyectos/:url', projectController.eliminarProyecto);
-
-    router.post('/proyectos/:url', tareasController.agregarTarea);
-    router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
-    router.delete('/tareas/:id', tareasController.eliminarTarea);
-
+    // crear cuenta
     router.get('/crear-cuenta', usuariosController.formCrearCuenta);
     router.post('/crear-cuenta', usuariosController.crearCuenta);
-
+    // iniciar sesion
     router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
     router.post('/iniciar-sesion', authController.autenticarUsuario);
 
