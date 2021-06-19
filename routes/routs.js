@@ -40,6 +40,7 @@ module.exports = function() {
     router.get('/cerrar-sesion', authController.cerrarSesion);
     //restablecer contraseña
     router.get('/reestablecer', usuariosController.formReestablecerPassword);
+    router.post('/reestablecer', authController.enviarToken);
 
 
 
