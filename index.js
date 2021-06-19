@@ -58,4 +58,3 @@ app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 });
 
-require('./handlers/email');
