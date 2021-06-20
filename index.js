@@ -9,6 +9,10 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const passport = require('./config/passport')
 
+
+require('dotenv').config({ path: 'variables.env'})
+
+
 const db = require('./config/db')
 
 require('./models/Proyectos')
@@ -20,7 +24,6 @@ db.sync()
     .catch(error => console.log(error))
 
 const app = express();
-const port = 3000;
 
 app.use(express.static('public'))
 
@@ -53,8 +56,12 @@ app.use((req, res, next) =>{
     next();
 })
 
-app.use('/', router())
-app.listen(port, () => {
-    console.log(`app listening at http://localhost:${port}`)
+app.use('/', router());
+
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+
+app.listen(port, host, () => {
+    console.log('El servidor esta funcionando')
 });
 
